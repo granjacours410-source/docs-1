@@ -22,7 +22,7 @@ redirect_from:
 
 {% data reusables.rai.code-scanning.copilot-autofix-note %}
 
-{% data variables.copilot.copilot_autofix_short %} generates potential fixes that are relevant to the existing source code and translates the description and location of an alert into code changes that may fix the alert. {% data variables.copilot.copilot_autofix_short %} uses internal {% data variables.product.prodname_copilot %} APIs interfacing with the large language model {% data variables.copilot.copilot_gpt_41 %} from OpenAI, which has sufficient generative capabilities to produce both suggested fixes in code and explanatory text for those fixes.
+{% data variables.copilot.copilot_autofix_short %} generates potential fixes that are relevant to the existing source code and translates the description and location of an alert into code changes that may fix the alert. {% data variables.copilot.copilot_autofix_short %} uses internal {% data variables.product.prodname_copilot %} APIs interfacing with the large language model {% data variables.copilot.copilot_gpt_51 %} from OpenAI, which has sufficient generative capabilities to produce both suggested fixes in code and explanatory text for those fixes.
 
 {% data variables.copilot.copilot_autofix_short %} is allowed by default and enabled for every repository using {% data variables.product.prodname_codeql %}, but you can choose to opt out and disable {% data variables.copilot.copilot_autofix_short %}. To learn how to disable {% data variables.copilot.copilot_autofix_short %} at the enterprise, organization and repository levels, see [AUTOTITLE](/code-security/code-scanning/managing-code-scanning-alerts/disabling-autofix-for-code-scanning).
 
@@ -46,11 +46,11 @@ When {% data variables.copilot.copilot_autofix_short %} is enabled for a reposit
 
 {% data variables.product.prodname_dotcom %} sends the LLM a variety of data from the {% data variables.product.prodname_code_scanning %} analysis. For example:
 
-* {% data variables.product.prodname_codeql %} alert data in SARIF format. For more information, see “[AUTOTITLE](/code-security/code-scanning/integrating-with-code-scanning/sarif-support-for-code-scanning).”
+* {% data variables.product.prodname_codeql %} alert data in SARIF format. For more information, see [AUTOTITLE](/code-security/code-scanning/integrating-with-code-scanning/sarif-support-for-code-scanning).
 * Code from the current version of the branch.
     * Short snippets of code around each source location, sink location, and any location referenced in the alert message or included on the flow path.
     * First ~10 lines from each file involved in any of those locations.
-* Help text for the {% data variables.product.prodname_codeql %} query that identified the problem. For examples, see “[{% data variables.product.prodname_codeql %} query help](https://codeql.github.com/codeql-query-help/).”
+* Help text for the {% data variables.product.prodname_codeql %} query that identified the problem. For examples, see [{% data variables.product.prodname_codeql %} query help](https://codeql.github.com/codeql-query-help/).
 
 Any {% data variables.copilot.copilot_autofix_short %} suggestions are generated and stored within the {% data variables.product.prodname_code_scanning %} backend. They are displayed as suggestions. No user interaction is needed beyond enabling {% data variables.product.prodname_code_scanning %} on the codebase and creating a pull request.
 
@@ -124,7 +124,7 @@ Sometimes a suggested fix includes a change in the dependencies of the codebase.
 
 ## Mitigating the limitations of suggestions
 
-The best way to mitigate the limitations of suggestions from {% data variables.copilot.copilot_autofix_short %} is to follow best practices. For example, using CI testing of pull requests to verify functional requirements are unaffected and using dependency management solutions, such as the dependency review API and action. For more information, see “[AUTOTITLE](/code-security/supply-chain-security/understanding-your-software-supply-chain/about-dependency-review).”
+The best way to mitigate the limitations of suggestions from {% data variables.copilot.copilot_autofix_short %} is to follow best practices. For example, using CI testing of pull requests to verify functional requirements are unaffected and using dependency management solutions, such as the dependency review API and action. For more information, see [AUTOTITLE](/code-security/supply-chain-security/understanding-your-software-supply-chain/about-dependency-review).
 
 It is important to remember that the author of a pull request retains responsibility for how they respond to review comments and suggested code changes, whether proposed by colleagues or automated tools. Developers should always look at suggestions for code changes critically. If needed, they should edit the suggested changes to ensure that the resulting code and application are correct, secure, meet performance criteria, and satisfy all other functional and non-functional requirements for the application.
 

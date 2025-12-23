@@ -247,7 +247,20 @@ export const schema: Schema = {
           guides: {
             type: 'array',
             items: {
-              type: 'string',
+              type: 'object',
+              required: ['href'],
+              properties: {
+                href: {
+                  type: 'string',
+                  description: 'Path to the article in the journey track',
+                },
+                alternativeNextStep: {
+                  type: 'string',
+                  description:
+                    'Optional branching text for the article when guiding users through the journey',
+                },
+              },
+              additionalProperties: false,
             },
             description: 'Array of article paths that make up this journey track',
           },
@@ -353,6 +366,9 @@ export const schema: Schema = {
     // START category-landing tags
     category: {
       type: 'array',
+      errorMessage: `must be an array, which is written in frontmatter like:
+category:
+  - Category Name`,
     },
     complexity: {
       type: 'array',
